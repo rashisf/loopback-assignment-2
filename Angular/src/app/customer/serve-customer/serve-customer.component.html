@@ -1,0 +1,37 @@
+<h1 style="text-align:center">Customer Details</h1>
+<div *ngIf="dataCheck; else elseBlock">
+    <table class="table table-striped" style="table-layout: fixed;">
+        <thead>
+            <tr>
+                <th class="hidden">Id</th>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Address</th>
+                <th>Operations</th>
+                <th>Show Users</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let c of customers">
+                <td class="hidden">{{c.id}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.website}}</td>
+                <td>{{c.address}}</td>
+                <td> 
+                    <button class="btn btn-success" (click)="editCustomer(c.id)"> Edit</button>
+                    <button class="btn btn-danger" (click)="deleteCustomer(c.id)"> Delete</button>
+                </td>
+                <td><button class="btn btn-success" (click)="showEmployees(c.id)"> Show users</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-danger" (click)="addCustomer()"> Add Customer</button>
+
+</div>
+
+<ng-template #elseBlock>
+    <h1>{{errorMessage}}</h1>
+</ng-template>
